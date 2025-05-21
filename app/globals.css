@@ -1,0 +1,16 @@
+@import "tailwindcss";
+
+@import url('https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&family=Tiny5&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=VT323:wght@400&display=swap');
+
+@theme {
+  --color-terracotta: #fdf6ec;
+  --color-butter: #ffc23d;
+  --color-bright-orange: #ff9800;
+  --color-light-red: #ff6666;
+  --color-teal: #00b894;
+  --color-caramel: #f8de9c;
+  --font-pixelify: "Pixelify Sans";
+  --font-vt323: "VT323";
+}
