@@ -54,18 +54,18 @@ export default function Home() {
         src={soundSrc}
         onFinish={() => setPlaySound(false)}
       />
-      <div>
+      <div className="flex flex-col">
         <Image
           src="/photo/logo.png"
           alt="Logo"
           width={600}
           height={600}
-          className="mx-auto mt-25 max-w-full h-auto md:w-120 lg:w-150 xl:w-200"
+          className="mx-auto mt-25 h-auto sm:w-130 md:w-150 lg:w-175 xl:w-200"
         />
-        <div className="flex items-center justify-center gap-4 my-10">
+        <div className="flex items-center justify-center gap-4 my-10 xl:flex-row">
           <button
             onClick={handleHTP}
-            className="w-60 md:w-64 xl:w-75" // fixed width and height
+            className="sm:w-50 md:w-64 xl:w-75" // fixed width and height
           >
             <Image
               src="/photo/howtoplay.png"
@@ -77,7 +77,7 @@ export default function Home() {
           </button>
           <button
             onClick={handleAbout}
-            className="w-60 md:w-64 xl:w-75"
+            className="sm:w-50 md:w-64 xl:w-75"
           >
             <Image
               src="/photo/about.png"
@@ -88,19 +88,20 @@ export default function Home() {
             />
           </button>
         </div>
-        <div className="grid grid-cols-2 sm:grid-cols-2 sm:space-y-5 sm:grid-cols-4 p-2">
+        <div className="grid sm:grid-cols-2 sm:space-y-5 lg:grid-cols-4 p-2">
           {levelOrder.map((level) => (
             <button
               key={level}
               onClick={() => handleLevelClick(level)}
               className="flex justify-center"
             >
-              <div className="relative flex justify-center w-24 h-24">
+              <div className="relative flex justify-center sm:size-20 md:size-20 lg:size-25">
                 <Image
                   src={`/levels/${level}.png`}
                   alt={`Level ${level}`}
                   width={100}
                   height={100}
+                  className="object-contain w-full h-full"
                 />
               </div>
             </button>
