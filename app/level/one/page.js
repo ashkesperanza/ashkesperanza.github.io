@@ -253,7 +253,7 @@ export default function One() {
                             return (
                                 <div 
                                     key={`${rowIndex}-${colIndex}`} 
-                                    className={`w-18 h-18 bg-white ${
+                                    className={`bg-white sm:size-15 md:size-18 lg:size-20 ${
                                         isClickable ? 'cursor-pointer hover:bg-gray-200' : ''
                                     } ${gameWon ? 'pointer-events-none' : ''}`}
                                     onClick={() => isClickable && toggleTileValue(rowIndex, colIndex)}
