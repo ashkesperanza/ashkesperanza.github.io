@@ -6,6 +6,7 @@ import AudioPlayer from "./components/AudioPlayer/audio";
 import Modal from "./components/Modal/modal";
 import About from "./components/About/about";
 import HowToPlay from "./components/HowToPlay/howtoplay";
+import MusicPlayer from "./components/MusicPlayer/musicplayer";
 
 export default function Home() {
   const router = useRouter();
@@ -37,6 +38,7 @@ export default function Home() {
 
   return (
     <main className="flex flex-col items-center h-screen w-screen bg-terracotta p-2">
+      <MusicPlayer />
       {showAbout && (
         <Modal onClose={() => setShowAbout(false)}>
           <About />

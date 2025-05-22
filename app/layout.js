@@ -1,6 +1,6 @@
 import { Geist, Geist_Mono, Pixelify_Sans, VT323 } from "next/font/google";
 import "./globals.css";
-import MusicPlayer from "./components/MusicPlayer/musicplayer";
+import { Analytics } from "@vercel/analytics/next";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -37,8 +37,8 @@ export default function RootLayout({ children }) {
       <body
         className={`${vt323.variable} ${geistMono.variable} antialiased`}
       >
-        <MusicPlayer />
         {children}
+        <Analytics />
       </body>
     </html>
   );
