@@ -9,7 +9,7 @@ import { useRouter } from "next/navigation";
 export default function Four() {
     const router = useRouter();
     const [moves, setMoves] = useState(0);
-    const maxMoves = 6;
+    const maxMoves = 5;
     const [currentLevelIndex, setCurrentLevelIndex] = useState(0);
     const [gameWon, setGameWon] = useState(false);
     const [gameCompleted, setGameCompleted] = useState(false);
