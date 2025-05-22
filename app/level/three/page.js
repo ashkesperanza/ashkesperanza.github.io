@@ -9,7 +9,7 @@ import "@/app/styles/custom.css"
 export default function Three() {
     const router = useRouter();
     const [moves, setMoves] = useState(0);
-    const maxMoves = 6;
+    const maxMoves = 4;
     const [currentLevelIndex, setCurrentLevelIndex] = useState(0);
     const [gameWon, setGameWon] = useState(false);
     const [gameCompleted, setGameCompleted] = useState(false);
