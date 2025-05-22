@@ -372,7 +372,7 @@ const toggleTileValue = (rowIndex, colIndex) => {
                             return (
                                 <div 
                                     key={`${rowIndex}-${colIndex}`} 
-                                    className={`w-15 h-15 bg-white ${
+                                    className={`bg-white sm:size-15 md:size-18 lg:size-20 ${
                                         isClickable ? 'cursor-pointer hover:bg-gray-200' : ''
                                     } ${gameWon ? 'pointer-events-none' : ''}`}
                                     onClick={() => isClickable && toggleTileValue(rowIndex, colIndex)}
