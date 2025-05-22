@@ -293,7 +293,7 @@ const toggleTileValue = (rowIndex, colIndex) => {
                 <BackHomeButton />
                 <DropdownMenu />
             </div>
-            <h1 className="text-4xl font-bold text-center mb-4 font-vt323">Puzzle {currentKnot.name}</h1>
+            <h1 className="text-4xl font-bold text-center mb-4 font-vt323">Puzzle: {currentKnot.name}</h1>
             <div className="text-3xl mb-6 text-center font-vt323">
                 Moves left: <span className="font-semibold font-vt323">{maxMoves - moves}</span>
             </div>
