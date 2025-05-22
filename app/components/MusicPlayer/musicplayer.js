@@ -1,57 +1,83 @@
 'use client';
 
-import React, { useState, useRef } from 'react';
+import React, { useEffect, useState } from 'react';
 
 export default function MusicPlayer() {
   const [isPlaying, setIsPlaying] = useState(false);
-  const audioCtxRef = useRef(null);
-  const sourceRef = useRef(null);
 
-  const startAudio = () => {
-    if (isPlaying) return;
+  useEffect(() => {
+    // Restore playback state if it exists
+    if (typeof window !== "undefined" && window.__musicState?.isPlaying) {
+      setIsPlaying(true);
+    }
+  }, []);
 
-    if (!audioCtxRef.current) {
-      audioCtxRef.current = new (window.AudioContext || window.webkitAudioContext)();
+  const toggleAudio = async () => {
+    if (!window.__musicState) {
+      window.__musicState = {
+        audioCtx: new (window.AudioContext || window.webkitAudioContext)(),
+        source: null,
+        gain: null,
+        isPlaying: false,
+      };
     }
 
-    if (audioCtxRef.current.state === 'suspended') {
-      audioCtxRef.current.resume();
+    const ctx = window.__musicState.audioCtx;
+
+    if (ctx.state === 'suspended') {
+      await ctx.resume();
     }
 
-    fetch('/sound/Whetzel (Rest This Day Geamat Remix).wav')
-      .then(res => res.arrayBuffer())
-      .then(arrayBuffer => audioCtxRef.current.decodeAudioData(arrayBuffer))
-      .then(audioBuffer => {
-        const gainNode = audioCtxRef.current.createGain();
-        gainNode.gain.value = 0.3;
-        gainNode.connect(audioCtxRef.current.destination);
+    if (!window.__musicState.isPlaying) {
+      const res = await fetch('/sound/Whetzel (Rest This Day Geamat Remix).wav');
+      const arrayBuffer = await res.arrayBuffer();
+      const audioBuffer = await ctx.decodeAudioData(arrayBuffer);
 
-        const source = audioCtxRef.current.createBufferSource();
-        source.buffer = audioBuffer;
-        source.loop = true;
-        source.connect(gainNode);
-        source.start(0);
+      const gain = ctx.createGain();
+      gain.gain.value = 0.3;
+      gain.connect(ctx.destination);
 
-        sourceRef.current = source;
-        setIsPlaying(true);
-      });
+      const source = ctx.createBufferSource();
+      source.buffer = audioBuffer;
+      source.loop = true;
+      source.connect(gain);
+      source.start(0);
+
+      window.__musicState.source = source;
+      window.__musicState.gain = gain;
+      window.__musicState.isPlaying = true;
+
+      setIsPlaying(true);
+    } else {
+      if (window.__musicState.source) {
+        window.__musicState.source.stop();
+        window.__musicState.source.disconnect();
+        window.__musicState.source = null;
+      }
+      window.__musicState.isPlaying = false;
+      setIsPlaying(false);
+    }
   };
 
   return (
-    <>
-      {!isPlaying && (
-        <button
-          onClick={startAudio}
-          style={{
-            padding: '10px 20px',
-            fontSize: '16px',
-            cursor: 'pointer',
-            marginTop: '20px',
-          }}
-        >
-          Unmute Music
-        </button>
-      )}
-    </>
+    <button
+      onClick={toggleAudio}
+      style={{
+        position: 'fixed',
+        bottom: '20px',
+        right: '20px',
+        zIndex: 1000,
+        background: 'none',
+        border: 'none',
+        cursor: 'pointer',
+      }}
+    >
+      <img
+        src={isPlaying ? '/photo/music.png' : '/photo/no music.png'}
+        alt={isPlaying ? 'Mute' : 'Unmute'}
+        width={80}
+        height={40}
+      />
+    </button>
   );
 }
