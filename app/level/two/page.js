@@ -341,13 +341,13 @@ const verifyKnot = (knotData) => {
                          {row.map((tile, colIndex) => {
                              const isClickable = tile === 9 || tile === 10;
                              return (
-                                 <div 
-                                     key={`${rowIndex}-${colIndex}`} 
-                                     className={`w-18 h-18 bg-white ${
-                                         isClickable ? 'cursor-pointer hover:bg-gray-200' : ''
-                                     } ${gameWon ? 'pointer-events-none' : ''}`}
-                                     onClick={() => isClickable && toggleTileValue(rowIndex, colIndex)}
-                                 >
+                                <div 
+                                    key={`${rowIndex}-${colIndex}`} 
+                                    className={`bg-white sm:size-15 md:size-18 lg:size-20 ${
+                                        isClickable ? 'cursor-pointer hover:bg-gray-200' : ''
+                                    } ${gameWon ? 'pointer-events-none' : ''}`}
+                                    onClick={() => isClickable && toggleTileValue(rowIndex, colIndex)}
+                                >
                                      <Image
                                          src={`/tiles/T${tile}.png`}
                                          alt={`T${tile}`}
