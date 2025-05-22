@@ -63,22 +63,28 @@ export default function Home() {
           className="mx-auto mt-25 max-w-full h-auto md:w-120 lg:w-150 xl:w-200"
         />
         <div className="flex items-center justify-center gap-4 my-10">
-          <button onClick={handleHTP}>
+          <button
+            onClick={handleHTP}
+            className="w-60 md:w-64 xl:w-75" // fixed width and height
+          >
             <Image
               src="/photo/howtoplay.png"
               alt="How to Play"
               width={175}
               height={175}
-              className="w-full h-full object-contain md:w-50 xl:w-75"
+              className="object-contain w-full h-full"
             />
           </button>
-          <button onClick={handleAbout}>
+          <button
+            onClick={handleAbout}
+            className="w-60 md:w-64 xl:w-75"
+          >
             <Image
               src="/photo/about.png"
               alt="About"
               width={175}
               height={175}
-              className="w-full h-full object-contain md:w-50 xl:w-75"
+              className="object-contain w-full h-full"
             />
           </button>
         </div>
